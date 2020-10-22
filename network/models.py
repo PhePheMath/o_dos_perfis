@@ -12,3 +12,13 @@ class Post(models.Model):
     author = models.ForeignKey('account.Profile', on_delete=models.CASCADE)
     date = models.DateTimeField('Data e Hora da Postagem', 'DateTimeStamp')
     text = models.TextField('Postagem')
+
+
+class React(models.Model):
+    profile = models.ForeignKey('account.Profile', on_delete=models.CASCADE,
+                                related_name='all_reactions')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                             related_name='reactions')
+    date = models.DateTimeField('Data e Hora da Postagem', 'DateTimeStamp')
+    reaction = models.ForeignKey(Reaction, on_delete=models.CASCADE,
+                                 related_name='where')
