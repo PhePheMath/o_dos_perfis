@@ -8,3 +8,7 @@ class Reaction(models.Model):
     weight = models.IntegerField()
 
 
+class Post(models.Model):
+    author = models.ForeignKey('account.Profile', on_delete=models.CASCADE)
+    date = models.DateTimeField('Data e Hora da Postagem', 'DateTimeStamp')
+    text = models.TextField('Postagem')
