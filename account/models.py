@@ -4,9 +4,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    pass
+    birthday = models.DateField('User\'s Birthday')
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='users')
     auth = models.BooleanField('User Is Authenticated')
+    contacts = models.ManyToManyField(User, related_name='contacts')
